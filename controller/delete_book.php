@@ -15,7 +15,11 @@ if(!isset($_SESSION[md5("Lib-Bibliotecario")])){
 //receber os dados via post
 $filters['id_book'] = $_POST['filter'];
 
+Manager::delete("tb_collection", array('book_id'=>$filters['id_book']));
+Manager::delete("tb_loan", array('book_id'=>$filters['id_book']));
 Manager::delete("tb_book", $filters);
+
+
 
 header("location: ".base_url()."/librarian.php?success=book_deleted&option=books");
 ?>
